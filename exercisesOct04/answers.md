@@ -25,7 +25,7 @@ def p_statement_while(t):
     'statement_while :  WHILE expression DO statement'
     t[0] = AST.statement_while(t[2], t[4], t.lexer.lineno)
 ```
-As we can see, it basically just uses the WHILE token, which could both be *while* and *as_long_as* after out implementation of previous line.
+As we can see, it basically just uses the WHILE token, which could both be *while* and *as_long_as* after implementation of previous line.
 
 **2:**  
 Change end of statement symbol from semicolon to period.  
