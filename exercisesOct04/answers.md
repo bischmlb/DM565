@@ -1,3 +1,51 @@
+
+### 2
+
+Flex scanner creations and testing:  
+**1:**
+Help Microsoft make texts politically correct by replacing "idiot" with "intellectually challenged person", etc.  
+
+```l
+%{
+#include <stdio.h>
+%}
+
+%option noyywrap
+
+%%
+"idiot"        iteArray();      
+
+%%
+
+void iteArray(){
+  int i;
+  int arrayLength;
+  char str[] = {'i','n','t','e','l','l','e','c','t','u','a','l','l','y',' ',
+  'c','h','a','l','l','e','n','g','e','d',' ',
+  'p','e','r','s','o','n','\0'};
+  arrayLength = sizeof(str) / sizeof(str[0]);
+  for(i = 0; i < arrayLength; ++i){
+    putchar(str[i]);
+  }
+}
+
+void main() {
+  yylex();
+}
+```
+
+
+
+### 3
+
+
+***
+
+### 4
+
+(done)
+
+***
 ### 5
 
 **1:**  
