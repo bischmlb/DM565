@@ -527,6 +527,6 @@ IN CLR(1) in comparison to LR(0) and SLR(1), we will place reductions in the loo
 LR(1) and LALR(1) Is pretty much the same, the only difference is that u merge identical states, ignore the lookahead sets.
 
 Example of LR(1) states from youtube:  
-![ddd](LR(1)example.PNG)
+![ddd](LR(1)Example.PNG)
 
 Making this LALR(1) Would mean we merge the states that are the same (ignoring lookaheads) LALR examples on page 66 appel.
