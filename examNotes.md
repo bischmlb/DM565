@@ -230,16 +230,16 @@ Two of the most useful abstractions used in modern compilers are CFG's for parsi
 
 
 **COMPILER PHASES**  
-![compilerWords](compilerWords.png)
+![compilerWords](compilerWords.PNG)
 
 **Simpler version**  
-![compilerphases1](compilerPhases2.png)
+![compilerphases1](compilerPhases2.PNG)
 
 **Example grammar (CFG)**  
-![grammarTree](grammarTree.png)
+![grammarTree](grammarTree.PNG)
 
 **Example of parse tree in compiler, using grammar above**
-![compilertree](parseTreeCompiler.png)
+![compilertree](parseTreeCompiler.PNG)
 
 Implementation of this in C, and more guidelines on page 10-11, appel.  
 
@@ -441,7 +441,7 @@ Example can be seen on page 110, sipser.
 
 ### Parsing
 
-![](parserTypes.png)
+![](parserTypes.PNG)
 
 "The way in which words are put together to form phrases, clauses, or sentences."  
 
@@ -470,7 +470,7 @@ Eksempel fra youtube:
 
 HVIS EPSILON ER EN DEL AF SÆTTET FJERNER DET ORIGINALEN OG MAN KØRER IGEN
 
-![youtube](firstFollowYT.png)
+![youtube](firstFollowYT.PNG)
 
 ```
 First(E) = {id, (}
@@ -498,25 +498,25 @@ FOLLOW(C) = {g, $, b, h}
 ```
 
 LL1 Construction fra youtube:
-![ll111](LL1Construction.png)
+![ll111](LL1Construction.PNG)
 
 Hvordan en LL1 parser virker på stacken(Han er ved at strege ( over fordi der er match med input), ellers laver han lookup i tabellen):
-![stack](ll1parserStack.png)
+![stack](ll1parserStack.PNG)
 
 LL1 is only accepted when we only have at most one construction in a parsing table column. Check if one variable has multiple productions that give same results. Example of youtube:
 ![LL1](checkIfLL1.PNG)
 
 ### LR(0)
 LR(0) Parsing table construction example:  
-![](lr0Example.png)
+![](lr0Example.PNG)
 
 Example from book:  
 Rules:  
-![](LR(0)examplerules.png)
-![](LR(0)bookexample.png)
+![](LR(0)examplerules.PNG)
+![](LR(0)bookexample.PNG)
 
 How LR(0) works on the stack:  
-![](LR(0)stack.png)
+![](LR(0)stack.PNG)
 
 If there are conflicting entries, the grammar is not LR(0), which means we could use SLR. The only difference to this is that we put reduce actions into where indicated by the FOLLOW set.
 
@@ -527,6 +527,6 @@ IN CLR(1) in comparison to LR(0) and SLR(1), we will place reductions in the loo
 LR(1) and LALR(1) Is pretty much the same, the only difference is that u merge identical states, ignore the lookahead sets.
 
 Example of LR(1) states from youtube:  
-![](LR(1)example.png)
+![](LR(1)example.PNG)
 
 Making this LALR(1) Would mean we merge the states that are the same (ignoring lookaheads) LALR examples on page 66 appel.
