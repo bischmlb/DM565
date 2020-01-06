@@ -57,5 +57,20 @@ bobbob
 10100
 67200
 
+Mr. Schafer
+Mrs. Robinson
+Mr Smith
+Mr T
+
+CoreyMSchafer@gmail.com
+coret.schafer@university.edu
+corey-321-schafer@my-work.net
+
+https://www.google.com
+http://coreyms.com
+https://youtube.com
+https://www.nasa.gov
+
+
 <h2> lille headline </h2>
 <H3> STOR HEADLINE </H3>

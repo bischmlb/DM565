@@ -41,7 +41,9 @@ lajac01
 make the file.
 
 ```
-λ seq 9 | tr -d [0-9] | sed -s 'i @student.sdu.dk' | sed -n 'p;n' > emails.txt | cat emails.txt
+λ
+λ seq 9 | sed -s 'i @student.sdu.dk' | sed -n 'p;n' > emails.txt | cat emails.txt
+
 @student.sdu.dk
 @student.sdu.dk
 @student.sdu.dk

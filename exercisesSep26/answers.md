@@ -95,7 +95,7 @@ Format ex: *12 34 56 78* or *1234 5678*
 4. dates in the Danish format 1/1 1970.  
 Format ex: *1/2 1999*
 ```
-λ grep -E "[0-9]{1,2}/[0-9] [0-9]{4}" testGrep.txt
+λ grep -E "[0-9]{1,2}/[0-9]{1,2} [0-9]{4}" testGrep.txt
 26/3 1996
 22/3 1992
 12/9 2001

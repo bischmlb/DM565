@@ -1,0 +1,2346 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> body
+Rule 2     empty -> <empty>
+Rule 3     body -> optional_variables_declaration_sequence optional_functions_declaration_list statement_list
+Rule 4     optional_variables_declaration_sequence -> empty
+Rule 5     optional_variables_declaration_sequence -> variables_declaration_sequence
+Rule 6     variables_declaration_sequence -> VAR variables_list
+Rule 7     variables_declaration_sequence -> VAR variables_list variables_declaration_sequence
+Rule 8     variables_list -> IDENT
+Rule 9     variables_list -> IDENT COMMA variables_list
+Rule 10    optional_functions_declaration_list -> empty
+Rule 11    optional_functions_declaration_list -> functions_declaration_list
+Rule 12    functions_declaration_list -> function
+Rule 13    functions_declaration_list -> function functions_declaration_list
+Rule 14    function -> FUNCTION IDENT LPAREN optional_parameter_list RPAREN LCURL body RCURL
+Rule 15    optional_parameter_list -> empty
+Rule 16    optional_parameter_list -> parameter_list
+Rule 17    parameter_list -> IDENT
+Rule 18    parameter_list -> IDENT COMMA parameter_list
+Rule 19    statement -> statement_return
+Rule 20    statement -> statement_print
+Rule 21    statement -> statement_assignment
+Rule 22    statement -> statement_ifthenelse
+Rule 23    statement -> statement_while
+Rule 24    statement -> statement_compound
+Rule 25    statement_return -> RETURN expression SEMICOL
+Rule 26    statement_print -> PRINT expression SEMICOL
+Rule 27    statement_assignment -> IDENT ASSIGN expression SEMICOL
+Rule 28    statement_ifthenelse -> IF expression THEN statement ELSE statement
+Rule 29    statement_while -> WHILE expression DO statement
+Rule 30    statement_compound -> LCURL statement_list RCURL
+Rule 31    statement_list -> statement
+Rule 32    statement_list -> statement statement_list
+Rule 33    expression -> expression_integer
+Rule 34    expression -> expression_identifier
+Rule 35    expression -> expression_call
+Rule 36    expression -> expression_binop
+Rule 37    expression -> expression_group
+Rule 38    expression_integer -> INT
+Rule 39    expression_identifier -> IDENT
+Rule 40    expression_call -> IDENT LPAREN optional_expression_list RPAREN
+Rule 41    expression_binop -> expression PLUS expression
+Rule 42    expression_binop -> expression MINUS expression
+Rule 43    expression_binop -> expression TIMES expression
+Rule 44    expression_binop -> expression DIVIDE expression
+Rule 45    expression_binop -> expression EQ expression
+Rule 46    expression_binop -> expression NEQ expression
+Rule 47    expression_binop -> expression LT expression
+Rule 48    expression_binop -> expression GT expression
+Rule 49    expression_binop -> expression LTE expression
+Rule 50    expression_binop -> expression GTE expression
+Rule 51    expression_group -> LPAREN expression RPAREN
+Rule 52    optional_expression_list -> empty
+Rule 53    optional_expression_list -> expression_list
+Rule 54    expression_list -> expression
+Rule 55    expression_list -> expression COMMA expression_list
+
+Terminals, with rules where they appear
+
+ASSIGN               : 27
+COMMA                : 9 18 55
+DIVIDE               : 44
+DO                   : 29
+ELSE                 : 28
+EQ                   : 45
+FUNCTION             : 14
+GT                   : 48
+GTE                  : 50
+IDENT                : 8 9 14 17 18 27 39 40
+IF                   : 28
+INT                  : 38
+LCURL                : 14 30
+LPAREN               : 14 40 51
+LT                   : 47
+LTE                  : 49
+MINUS                : 42
+NEQ                  : 46
+PLUS                 : 41
+PRINT                : 26
+RCURL                : 14 30
+RETURN               : 25
+RPAREN               : 14 40 51
+SEMICOL              : 25 26 27
+THEN                 : 28
+TIMES                : 43
+VAR                  : 6 7
+WHILE                : 29
+error                : 
+
+Nonterminals, with rules where they appear
+
+body                 : 1 14
+empty                : 4 10 15 52
+expression           : 25 26 27 28 29 41 41 42 42 43 43 44 44 45 45 46 46 47 47 48 48 49 49 50 50 51 54 55
+expression_binop     : 36
+expression_call      : 35
+expression_group     : 37
+expression_identifier : 34
+expression_integer   : 33
+expression_list      : 53 55
+function             : 12 13
+functions_declaration_list : 11 13
+optional_expression_list : 40
+optional_functions_declaration_list : 3
+optional_parameter_list : 14
+optional_variables_declaration_sequence : 3
+parameter_list       : 16 18
+program              : 0
+statement            : 28 28 29 31 32
+statement_assignment : 21
+statement_compound   : 24
+statement_ifthenelse : 22
+statement_list       : 3 30 32
+statement_print      : 20
+statement_return     : 19
+statement_while      : 23
+variables_declaration_sequence : 5 7
+variables_list       : 6 7 9
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . body
+    (3) body -> . optional_variables_declaration_sequence optional_functions_declaration_list statement_list
+    (4) optional_variables_declaration_sequence -> . empty
+    (5) optional_variables_declaration_sequence -> . variables_declaration_sequence
+    (2) empty -> .
+    (6) variables_declaration_sequence -> . VAR variables_list
+    (7) variables_declaration_sequence -> . VAR variables_list variables_declaration_sequence
+
+    FUNCTION        reduce using rule 2 (empty -> .)
+    RETURN          reduce using rule 2 (empty -> .)
+    PRINT           reduce using rule 2 (empty -> .)
+    IDENT           reduce using rule 2 (empty -> .)
+    IF              reduce using rule 2 (empty -> .)
+    WHILE           reduce using rule 2 (empty -> .)
+    LCURL           reduce using rule 2 (empty -> .)
+    VAR             shift and go to state 6
+
+    program                        shift and go to state 1
+    body                           shift and go to state 2
+    optional_variables_declaration_sequence shift and go to state 3
+    empty                          shift and go to state 4
+    variables_declaration_sequence shift and go to state 5
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> body .
+
+    $end            reduce using rule 1 (program -> body .)
+
+
+state 3
+
+    (3) body -> optional_variables_declaration_sequence . optional_functions_declaration_list statement_list
+    (10) optional_functions_declaration_list -> . empty
+    (11) optional_functions_declaration_list -> . functions_declaration_list
+    (2) empty -> .
+    (12) functions_declaration_list -> . function
+    (13) functions_declaration_list -> . function functions_declaration_list
+    (14) function -> . FUNCTION IDENT LPAREN optional_parameter_list RPAREN LCURL body RCURL
+
+    RETURN          reduce using rule 2 (empty -> .)
+    PRINT           reduce using rule 2 (empty -> .)
+    IDENT           reduce using rule 2 (empty -> .)
+    IF              reduce using rule 2 (empty -> .)
+    WHILE           reduce using rule 2 (empty -> .)
+    LCURL           reduce using rule 2 (empty -> .)
+    FUNCTION        shift and go to state 11
+
+    optional_functions_declaration_list shift and go to state 7
+    empty                          shift and go to state 8
+    functions_declaration_list     shift and go to state 9
+    function                       shift and go to state 10
+
+state 4
+
+    (4) optional_variables_declaration_sequence -> empty .
+
+    FUNCTION        reduce using rule 4 (optional_variables_declaration_sequence -> empty .)
+    RETURN          reduce using rule 4 (optional_variables_declaration_sequence -> empty .)
+    PRINT           reduce using rule 4 (optional_variables_declaration_sequence -> empty .)
+    IDENT           reduce using rule 4 (optional_variables_declaration_sequence -> empty .)
+    IF              reduce using rule 4 (optional_variables_declaration_sequence -> empty .)
+    WHILE           reduce using rule 4 (optional_variables_declaration_sequence -> empty .)
+    LCURL           reduce using rule 4 (optional_variables_declaration_sequence -> empty .)
+
+
+state 5
+
+    (5) optional_variables_declaration_sequence -> variables_declaration_sequence .
+
+    FUNCTION        reduce using rule 5 (optional_variables_declaration_sequence -> variables_declaration_sequence .)
+    RETURN          reduce using rule 5 (optional_variables_declaration_sequence -> variables_declaration_sequence .)
+    PRINT           reduce using rule 5 (optional_variables_declaration_sequence -> variables_declaration_sequence .)
+    IDENT           reduce using rule 5 (optional_variables_declaration_sequence -> variables_declaration_sequence .)
+    IF              reduce using rule 5 (optional_variables_declaration_sequence -> variables_declaration_sequence .)
+    WHILE           reduce using rule 5 (optional_variables_declaration_sequence -> variables_declaration_sequence .)
+    LCURL           reduce using rule 5 (optional_variables_declaration_sequence -> variables_declaration_sequence .)
+
+
+state 6
+
+    (6) variables_declaration_sequence -> VAR . variables_list
+    (7) variables_declaration_sequence -> VAR . variables_list variables_declaration_sequence
+    (8) variables_list -> . IDENT
+    (9) variables_list -> . IDENT COMMA variables_list
+
+    IDENT           shift and go to state 13
+
+    variables_list                 shift and go to state 12
+
+state 7
+
+    (3) body -> optional_variables_declaration_sequence optional_functions_declaration_list . statement_list
+    (31) statement_list -> . statement
+    (32) statement_list -> . statement statement_list
+    (19) statement -> . statement_return
+    (20) statement -> . statement_print
+    (21) statement -> . statement_assignment
+    (22) statement -> . statement_ifthenelse
+    (23) statement -> . statement_while
+    (24) statement -> . statement_compound
+    (25) statement_return -> . RETURN expression SEMICOL
+    (26) statement_print -> . PRINT expression SEMICOL
+    (27) statement_assignment -> . IDENT ASSIGN expression SEMICOL
+    (28) statement_ifthenelse -> . IF expression THEN statement ELSE statement
+    (29) statement_while -> . WHILE expression DO statement
+    (30) statement_compound -> . LCURL statement_list RCURL
+
+    RETURN          shift and go to state 22
+    PRINT           shift and go to state 23
+    IDENT           shift and go to state 24
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    LCURL           shift and go to state 27
+
+    statement_list                 shift and go to state 14
+    statement                      shift and go to state 15
+    statement_return               shift and go to state 16
+    statement_print                shift and go to state 17
+    statement_assignment           shift and go to state 18
+    statement_ifthenelse           shift and go to state 19
+    statement_while                shift and go to state 20
+    statement_compound             shift and go to state 21
+
+state 8
+
+    (10) optional_functions_declaration_list -> empty .
+
+    RETURN          reduce using rule 10 (optional_functions_declaration_list -> empty .)
+    PRINT           reduce using rule 10 (optional_functions_declaration_list -> empty .)
+    IDENT           reduce using rule 10 (optional_functions_declaration_list -> empty .)
+    IF              reduce using rule 10 (optional_functions_declaration_list -> empty .)
+    WHILE           reduce using rule 10 (optional_functions_declaration_list -> empty .)
+    LCURL           reduce using rule 10 (optional_functions_declaration_list -> empty .)
+
+
+state 9
+
+    (11) optional_functions_declaration_list -> functions_declaration_list .
+
+    RETURN          reduce using rule 11 (optional_functions_declaration_list -> functions_declaration_list .)
+    PRINT           reduce using rule 11 (optional_functions_declaration_list -> functions_declaration_list .)
+    IDENT           reduce using rule 11 (optional_functions_declaration_list -> functions_declaration_list .)
+    IF              reduce using rule 11 (optional_functions_declaration_list -> functions_declaration_list .)
+    WHILE           reduce using rule 11 (optional_functions_declaration_list -> functions_declaration_list .)
+    LCURL           reduce using rule 11 (optional_functions_declaration_list -> functions_declaration_list .)
+
+
+state 10
+
+    (12) functions_declaration_list -> function .
+    (13) functions_declaration_list -> function . functions_declaration_list
+    (12) functions_declaration_list -> . function
+    (13) functions_declaration_list -> . function functions_declaration_list
+    (14) function -> . FUNCTION IDENT LPAREN optional_parameter_list RPAREN LCURL body RCURL
+
+    RETURN          reduce using rule 12 (functions_declaration_list -> function .)
+    PRINT           reduce using rule 12 (functions_declaration_list -> function .)
+    IDENT           reduce using rule 12 (functions_declaration_list -> function .)
+    IF              reduce using rule 12 (functions_declaration_list -> function .)
+    WHILE           reduce using rule 12 (functions_declaration_list -> function .)
+    LCURL           reduce using rule 12 (functions_declaration_list -> function .)
+    FUNCTION        shift and go to state 11
+
+    function                       shift and go to state 10
+    functions_declaration_list     shift and go to state 28
+
+state 11
+
+    (14) function -> FUNCTION . IDENT LPAREN optional_parameter_list RPAREN LCURL body RCURL
+
+    IDENT           shift and go to state 29
+
+
+state 12
+
+    (6) variables_declaration_sequence -> VAR variables_list .
+    (7) variables_declaration_sequence -> VAR variables_list . variables_declaration_sequence
+    (6) variables_declaration_sequence -> . VAR variables_list
+    (7) variables_declaration_sequence -> . VAR variables_list variables_declaration_sequence
+
+    FUNCTION        reduce using rule 6 (variables_declaration_sequence -> VAR variables_list .)
+    RETURN          reduce using rule 6 (variables_declaration_sequence -> VAR variables_list .)
+    PRINT           reduce using rule 6 (variables_declaration_sequence -> VAR variables_list .)
+    IDENT           reduce using rule 6 (variables_declaration_sequence -> VAR variables_list .)
+    IF              reduce using rule 6 (variables_declaration_sequence -> VAR variables_list .)
+    WHILE           reduce using rule 6 (variables_declaration_sequence -> VAR variables_list .)
+    LCURL           reduce using rule 6 (variables_declaration_sequence -> VAR variables_list .)
+    VAR             shift and go to state 6
+
+    variables_declaration_sequence shift and go to state 30
+
+state 13
+
+    (8) variables_list -> IDENT .
+    (9) variables_list -> IDENT . COMMA variables_list
+
+    VAR             reduce using rule 8 (variables_list -> IDENT .)
+    FUNCTION        reduce using rule 8 (variables_list -> IDENT .)
+    RETURN          reduce using rule 8 (variables_list -> IDENT .)
+    PRINT           reduce using rule 8 (variables_list -> IDENT .)
+    IDENT           reduce using rule 8 (variables_list -> IDENT .)
+    IF              reduce using rule 8 (variables_list -> IDENT .)
+    WHILE           reduce using rule 8 (variables_list -> IDENT .)
+    LCURL           reduce using rule 8 (variables_list -> IDENT .)
+    COMMA           shift and go to state 31
+
+
+state 14
+
+    (3) body -> optional_variables_declaration_sequence optional_functions_declaration_list statement_list .
+
+    $end            reduce using rule 3 (body -> optional_variables_declaration_sequence optional_functions_declaration_list statement_list .)
+    RCURL           reduce using rule 3 (body -> optional_variables_declaration_sequence optional_functions_declaration_list statement_list .)
+
+
+state 15
+
+    (31) statement_list -> statement .
+    (32) statement_list -> statement . statement_list
+    (31) statement_list -> . statement
+    (32) statement_list -> . statement statement_list
+    (19) statement -> . statement_return
+    (20) statement -> . statement_print
+    (21) statement -> . statement_assignment
+    (22) statement -> . statement_ifthenelse
+    (23) statement -> . statement_while
+    (24) statement -> . statement_compound
+    (25) statement_return -> . RETURN expression SEMICOL
+    (26) statement_print -> . PRINT expression SEMICOL
+    (27) statement_assignment -> . IDENT ASSIGN expression SEMICOL
+    (28) statement_ifthenelse -> . IF expression THEN statement ELSE statement
+    (29) statement_while -> . WHILE expression DO statement
+    (30) statement_compound -> . LCURL statement_list RCURL
+
+    $end            reduce using rule 31 (statement_list -> statement .)
+    RCURL           reduce using rule 31 (statement_list -> statement .)
+    RETURN          shift and go to state 22
+    PRINT           shift and go to state 23
+    IDENT           shift and go to state 24
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    LCURL           shift and go to state 27
+
+    statement                      shift and go to state 15
+    statement_list                 shift and go to state 32
+    statement_return               shift and go to state 16
+    statement_print                shift and go to state 17
+    statement_assignment           shift and go to state 18
+    statement_ifthenelse           shift and go to state 19
+    statement_while                shift and go to state 20
+    statement_compound             shift and go to state 21
+
+state 16
+
+    (19) statement -> statement_return .
+
+    RETURN          reduce using rule 19 (statement -> statement_return .)
+    PRINT           reduce using rule 19 (statement -> statement_return .)
+    IDENT           reduce using rule 19 (statement -> statement_return .)
+    IF              reduce using rule 19 (statement -> statement_return .)
+    WHILE           reduce using rule 19 (statement -> statement_return .)
+    LCURL           reduce using rule 19 (statement -> statement_return .)
+    $end            reduce using rule 19 (statement -> statement_return .)
+    RCURL           reduce using rule 19 (statement -> statement_return .)
+    ELSE            reduce using rule 19 (statement -> statement_return .)
+
+
+state 17
+
+    (20) statement -> statement_print .
+
+    RETURN          reduce using rule 20 (statement -> statement_print .)
+    PRINT           reduce using rule 20 (statement -> statement_print .)
+    IDENT           reduce using rule 20 (statement -> statement_print .)
+    IF              reduce using rule 20 (statement -> statement_print .)
+    WHILE           reduce using rule 20 (statement -> statement_print .)
+    LCURL           reduce using rule 20 (statement -> statement_print .)
+    $end            reduce using rule 20 (statement -> statement_print .)
+    RCURL           reduce using rule 20 (statement -> statement_print .)
+    ELSE            reduce using rule 20 (statement -> statement_print .)
+
+
+state 18
+
+    (21) statement -> statement_assignment .
+
+    RETURN          reduce using rule 21 (statement -> statement_assignment .)
+    PRINT           reduce using rule 21 (statement -> statement_assignment .)
+    IDENT           reduce using rule 21 (statement -> statement_assignment .)
+    IF              reduce using rule 21 (statement -> statement_assignment .)
+    WHILE           reduce using rule 21 (statement -> statement_assignment .)
+    LCURL           reduce using rule 21 (statement -> statement_assignment .)
+    $end            reduce using rule 21 (statement -> statement_assignment .)
+    RCURL           reduce using rule 21 (statement -> statement_assignment .)
+    ELSE            reduce using rule 21 (statement -> statement_assignment .)
+
+
+state 19
+
+    (22) statement -> statement_ifthenelse .
+
+    RETURN          reduce using rule 22 (statement -> statement_ifthenelse .)
+    PRINT           reduce using rule 22 (statement -> statement_ifthenelse .)
+    IDENT           reduce using rule 22 (statement -> statement_ifthenelse .)
+    IF              reduce using rule 22 (statement -> statement_ifthenelse .)
+    WHILE           reduce using rule 22 (statement -> statement_ifthenelse .)
+    LCURL           reduce using rule 22 (statement -> statement_ifthenelse .)
+    $end            reduce using rule 22 (statement -> statement_ifthenelse .)
+    RCURL           reduce using rule 22 (statement -> statement_ifthenelse .)
+    ELSE            reduce using rule 22 (statement -> statement_ifthenelse .)
+
+
+state 20
+
+    (23) statement -> statement_while .
+
+    RETURN          reduce using rule 23 (statement -> statement_while .)
+    PRINT           reduce using rule 23 (statement -> statement_while .)
+    IDENT           reduce using rule 23 (statement -> statement_while .)
+    IF              reduce using rule 23 (statement -> statement_while .)
+    WHILE           reduce using rule 23 (statement -> statement_while .)
+    LCURL           reduce using rule 23 (statement -> statement_while .)
+    $end            reduce using rule 23 (statement -> statement_while .)
+    RCURL           reduce using rule 23 (statement -> statement_while .)
+    ELSE            reduce using rule 23 (statement -> statement_while .)
+
+
+state 21
+
+    (24) statement -> statement_compound .
+
+    RETURN          reduce using rule 24 (statement -> statement_compound .)
+    PRINT           reduce using rule 24 (statement -> statement_compound .)
+    IDENT           reduce using rule 24 (statement -> statement_compound .)
+    IF              reduce using rule 24 (statement -> statement_compound .)
+    WHILE           reduce using rule 24 (statement -> statement_compound .)
+    LCURL           reduce using rule 24 (statement -> statement_compound .)
+    $end            reduce using rule 24 (statement -> statement_compound .)
+    RCURL           reduce using rule 24 (statement -> statement_compound .)
+    ELSE            reduce using rule 24 (statement -> statement_compound .)
+
+
+state 22
+
+    (25) statement_return -> RETURN . expression SEMICOL
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 33
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 23
+
+    (26) statement_print -> PRINT . expression SEMICOL
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 42
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 24
+
+    (27) statement_assignment -> IDENT . ASSIGN expression SEMICOL
+
+    ASSIGN          shift and go to state 43
+
+
+state 25
+
+    (28) statement_ifthenelse -> IF . expression THEN statement ELSE statement
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 44
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 26
+
+    (29) statement_while -> WHILE . expression DO statement
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 45
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 27
+
+    (30) statement_compound -> LCURL . statement_list RCURL
+    (31) statement_list -> . statement
+    (32) statement_list -> . statement statement_list
+    (19) statement -> . statement_return
+    (20) statement -> . statement_print
+    (21) statement -> . statement_assignment
+    (22) statement -> . statement_ifthenelse
+    (23) statement -> . statement_while
+    (24) statement -> . statement_compound
+    (25) statement_return -> . RETURN expression SEMICOL
+    (26) statement_print -> . PRINT expression SEMICOL
+    (27) statement_assignment -> . IDENT ASSIGN expression SEMICOL
+    (28) statement_ifthenelse -> . IF expression THEN statement ELSE statement
+    (29) statement_while -> . WHILE expression DO statement
+    (30) statement_compound -> . LCURL statement_list RCURL
+
+    RETURN          shift and go to state 22
+    PRINT           shift and go to state 23
+    IDENT           shift and go to state 24
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    LCURL           shift and go to state 27
+
+    statement_list                 shift and go to state 46
+    statement                      shift and go to state 15
+    statement_return               shift and go to state 16
+    statement_print                shift and go to state 17
+    statement_assignment           shift and go to state 18
+    statement_ifthenelse           shift and go to state 19
+    statement_while                shift and go to state 20
+    statement_compound             shift and go to state 21
+
+state 28
+
+    (13) functions_declaration_list -> function functions_declaration_list .
+
+    RETURN          reduce using rule 13 (functions_declaration_list -> function functions_declaration_list .)
+    PRINT           reduce using rule 13 (functions_declaration_list -> function functions_declaration_list .)
+    IDENT           reduce using rule 13 (functions_declaration_list -> function functions_declaration_list .)
+    IF              reduce using rule 13 (functions_declaration_list -> function functions_declaration_list .)
+    WHILE           reduce using rule 13 (functions_declaration_list -> function functions_declaration_list .)
+    LCURL           reduce using rule 13 (functions_declaration_list -> function functions_declaration_list .)
+
+
+state 29
+
+    (14) function -> FUNCTION IDENT . LPAREN optional_parameter_list RPAREN LCURL body RCURL
+
+    LPAREN          shift and go to state 47
+
+
+state 30
+
+    (7) variables_declaration_sequence -> VAR variables_list variables_declaration_sequence .
+
+    FUNCTION        reduce using rule 7 (variables_declaration_sequence -> VAR variables_list variables_declaration_sequence .)
+    RETURN          reduce using rule 7 (variables_declaration_sequence -> VAR variables_list variables_declaration_sequence .)
+    PRINT           reduce using rule 7 (variables_declaration_sequence -> VAR variables_list variables_declaration_sequence .)
+    IDENT           reduce using rule 7 (variables_declaration_sequence -> VAR variables_list variables_declaration_sequence .)
+    IF              reduce using rule 7 (variables_declaration_sequence -> VAR variables_list variables_declaration_sequence .)
+    WHILE           reduce using rule 7 (variables_declaration_sequence -> VAR variables_list variables_declaration_sequence .)
+    LCURL           reduce using rule 7 (variables_declaration_sequence -> VAR variables_list variables_declaration_sequence .)
+
+
+state 31
+
+    (9) variables_list -> IDENT COMMA . variables_list
+    (8) variables_list -> . IDENT
+    (9) variables_list -> . IDENT COMMA variables_list
+
+    IDENT           shift and go to state 13
+
+    variables_list                 shift and go to state 48
+
+state 32
+
+    (32) statement_list -> statement statement_list .
+
+    $end            reduce using rule 32 (statement_list -> statement statement_list .)
+    RCURL           reduce using rule 32 (statement_list -> statement statement_list .)
+
+
+state 33
+
+    (25) statement_return -> RETURN expression . SEMICOL
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    SEMICOL         shift and go to state 49
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NEQ             shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LTE             shift and go to state 58
+    GTE             shift and go to state 59
+
+
+state 34
+
+    (33) expression -> expression_integer .
+
+    SEMICOL         reduce using rule 33 (expression -> expression_integer .)
+    PLUS            reduce using rule 33 (expression -> expression_integer .)
+    MINUS           reduce using rule 33 (expression -> expression_integer .)
+    TIMES           reduce using rule 33 (expression -> expression_integer .)
+    DIVIDE          reduce using rule 33 (expression -> expression_integer .)
+    EQ              reduce using rule 33 (expression -> expression_integer .)
+    NEQ             reduce using rule 33 (expression -> expression_integer .)
+    LT              reduce using rule 33 (expression -> expression_integer .)
+    GT              reduce using rule 33 (expression -> expression_integer .)
+    LTE             reduce using rule 33 (expression -> expression_integer .)
+    GTE             reduce using rule 33 (expression -> expression_integer .)
+    THEN            reduce using rule 33 (expression -> expression_integer .)
+    DO              reduce using rule 33 (expression -> expression_integer .)
+    RPAREN          reduce using rule 33 (expression -> expression_integer .)
+    COMMA           reduce using rule 33 (expression -> expression_integer .)
+
+
+state 35
+
+    (34) expression -> expression_identifier .
+
+    SEMICOL         reduce using rule 34 (expression -> expression_identifier .)
+    PLUS            reduce using rule 34 (expression -> expression_identifier .)
+    MINUS           reduce using rule 34 (expression -> expression_identifier .)
+    TIMES           reduce using rule 34 (expression -> expression_identifier .)
+    DIVIDE          reduce using rule 34 (expression -> expression_identifier .)
+    EQ              reduce using rule 34 (expression -> expression_identifier .)
+    NEQ             reduce using rule 34 (expression -> expression_identifier .)
+    LT              reduce using rule 34 (expression -> expression_identifier .)
+    GT              reduce using rule 34 (expression -> expression_identifier .)
+    LTE             reduce using rule 34 (expression -> expression_identifier .)
+    GTE             reduce using rule 34 (expression -> expression_identifier .)
+    THEN            reduce using rule 34 (expression -> expression_identifier .)
+    DO              reduce using rule 34 (expression -> expression_identifier .)
+    RPAREN          reduce using rule 34 (expression -> expression_identifier .)
+    COMMA           reduce using rule 34 (expression -> expression_identifier .)
+
+
+state 36
+
+    (35) expression -> expression_call .
+
+    SEMICOL         reduce using rule 35 (expression -> expression_call .)
+    PLUS            reduce using rule 35 (expression -> expression_call .)
+    MINUS           reduce using rule 35 (expression -> expression_call .)
+    TIMES           reduce using rule 35 (expression -> expression_call .)
+    DIVIDE          reduce using rule 35 (expression -> expression_call .)
+    EQ              reduce using rule 35 (expression -> expression_call .)
+    NEQ             reduce using rule 35 (expression -> expression_call .)
+    LT              reduce using rule 35 (expression -> expression_call .)
+    GT              reduce using rule 35 (expression -> expression_call .)
+    LTE             reduce using rule 35 (expression -> expression_call .)
+    GTE             reduce using rule 35 (expression -> expression_call .)
+    THEN            reduce using rule 35 (expression -> expression_call .)
+    DO              reduce using rule 35 (expression -> expression_call .)
+    RPAREN          reduce using rule 35 (expression -> expression_call .)
+    COMMA           reduce using rule 35 (expression -> expression_call .)
+
+
+state 37
+
+    (36) expression -> expression_binop .
+
+    SEMICOL         reduce using rule 36 (expression -> expression_binop .)
+    PLUS            reduce using rule 36 (expression -> expression_binop .)
+    MINUS           reduce using rule 36 (expression -> expression_binop .)
+    TIMES           reduce using rule 36 (expression -> expression_binop .)
+    DIVIDE          reduce using rule 36 (expression -> expression_binop .)
+    EQ              reduce using rule 36 (expression -> expression_binop .)
+    NEQ             reduce using rule 36 (expression -> expression_binop .)
+    LT              reduce using rule 36 (expression -> expression_binop .)
+    GT              reduce using rule 36 (expression -> expression_binop .)
+    LTE             reduce using rule 36 (expression -> expression_binop .)
+    GTE             reduce using rule 36 (expression -> expression_binop .)
+    THEN            reduce using rule 36 (expression -> expression_binop .)
+    DO              reduce using rule 36 (expression -> expression_binop .)
+    RPAREN          reduce using rule 36 (expression -> expression_binop .)
+    COMMA           reduce using rule 36 (expression -> expression_binop .)
+
+
+state 38
+
+    (37) expression -> expression_group .
+
+    SEMICOL         reduce using rule 37 (expression -> expression_group .)
+    PLUS            reduce using rule 37 (expression -> expression_group .)
+    MINUS           reduce using rule 37 (expression -> expression_group .)
+    TIMES           reduce using rule 37 (expression -> expression_group .)
+    DIVIDE          reduce using rule 37 (expression -> expression_group .)
+    EQ              reduce using rule 37 (expression -> expression_group .)
+    NEQ             reduce using rule 37 (expression -> expression_group .)
+    LT              reduce using rule 37 (expression -> expression_group .)
+    GT              reduce using rule 37 (expression -> expression_group .)
+    LTE             reduce using rule 37 (expression -> expression_group .)
+    GTE             reduce using rule 37 (expression -> expression_group .)
+    THEN            reduce using rule 37 (expression -> expression_group .)
+    DO              reduce using rule 37 (expression -> expression_group .)
+    RPAREN          reduce using rule 37 (expression -> expression_group .)
+    COMMA           reduce using rule 37 (expression -> expression_group .)
+
+
+state 39
+
+    (38) expression_integer -> INT .
+
+    SEMICOL         reduce using rule 38 (expression_integer -> INT .)
+    PLUS            reduce using rule 38 (expression_integer -> INT .)
+    MINUS           reduce using rule 38 (expression_integer -> INT .)
+    TIMES           reduce using rule 38 (expression_integer -> INT .)
+    DIVIDE          reduce using rule 38 (expression_integer -> INT .)
+    EQ              reduce using rule 38 (expression_integer -> INT .)
+    NEQ             reduce using rule 38 (expression_integer -> INT .)
+    LT              reduce using rule 38 (expression_integer -> INT .)
+    GT              reduce using rule 38 (expression_integer -> INT .)
+    LTE             reduce using rule 38 (expression_integer -> INT .)
+    GTE             reduce using rule 38 (expression_integer -> INT .)
+    THEN            reduce using rule 38 (expression_integer -> INT .)
+    DO              reduce using rule 38 (expression_integer -> INT .)
+    RPAREN          reduce using rule 38 (expression_integer -> INT .)
+    COMMA           reduce using rule 38 (expression_integer -> INT .)
+
+
+state 40
+
+    (39) expression_identifier -> IDENT .
+    (40) expression_call -> IDENT . LPAREN optional_expression_list RPAREN
+
+    SEMICOL         reduce using rule 39 (expression_identifier -> IDENT .)
+    PLUS            reduce using rule 39 (expression_identifier -> IDENT .)
+    MINUS           reduce using rule 39 (expression_identifier -> IDENT .)
+    TIMES           reduce using rule 39 (expression_identifier -> IDENT .)
+    DIVIDE          reduce using rule 39 (expression_identifier -> IDENT .)
+    EQ              reduce using rule 39 (expression_identifier -> IDENT .)
+    NEQ             reduce using rule 39 (expression_identifier -> IDENT .)
+    LT              reduce using rule 39 (expression_identifier -> IDENT .)
+    GT              reduce using rule 39 (expression_identifier -> IDENT .)
+    LTE             reduce using rule 39 (expression_identifier -> IDENT .)
+    GTE             reduce using rule 39 (expression_identifier -> IDENT .)
+    THEN            reduce using rule 39 (expression_identifier -> IDENT .)
+    DO              reduce using rule 39 (expression_identifier -> IDENT .)
+    RPAREN          reduce using rule 39 (expression_identifier -> IDENT .)
+    COMMA           reduce using rule 39 (expression_identifier -> IDENT .)
+    LPAREN          shift and go to state 60
+
+
+state 41
+
+    (51) expression_group -> LPAREN . expression RPAREN
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 61
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 42
+
+    (26) statement_print -> PRINT expression . SEMICOL
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    SEMICOL         shift and go to state 62
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NEQ             shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LTE             shift and go to state 58
+    GTE             shift and go to state 59
+
+
+state 43
+
+    (27) statement_assignment -> IDENT ASSIGN . expression SEMICOL
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 63
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 44
+
+    (28) statement_ifthenelse -> IF expression . THEN statement ELSE statement
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    THEN            shift and go to state 64
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NEQ             shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LTE             shift and go to state 58
+    GTE             shift and go to state 59
+
+
+state 45
+
+    (29) statement_while -> WHILE expression . DO statement
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    DO              shift and go to state 65
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NEQ             shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LTE             shift and go to state 58
+    GTE             shift and go to state 59
+
+
+state 46
+
+    (30) statement_compound -> LCURL statement_list . RCURL
+
+    RCURL           shift and go to state 66
+
+
+state 47
+
+    (14) function -> FUNCTION IDENT LPAREN . optional_parameter_list RPAREN LCURL body RCURL
+    (15) optional_parameter_list -> . empty
+    (16) optional_parameter_list -> . parameter_list
+    (2) empty -> .
+    (17) parameter_list -> . IDENT
+    (18) parameter_list -> . IDENT COMMA parameter_list
+
+    RPAREN          reduce using rule 2 (empty -> .)
+    IDENT           shift and go to state 67
+
+    optional_parameter_list        shift and go to state 68
+    empty                          shift and go to state 69
+    parameter_list                 shift and go to state 70
+
+state 48
+
+    (9) variables_list -> IDENT COMMA variables_list .
+
+    VAR             reduce using rule 9 (variables_list -> IDENT COMMA variables_list .)
+    FUNCTION        reduce using rule 9 (variables_list -> IDENT COMMA variables_list .)
+    RETURN          reduce using rule 9 (variables_list -> IDENT COMMA variables_list .)
+    PRINT           reduce using rule 9 (variables_list -> IDENT COMMA variables_list .)
+    IDENT           reduce using rule 9 (variables_list -> IDENT COMMA variables_list .)
+    IF              reduce using rule 9 (variables_list -> IDENT COMMA variables_list .)
+    WHILE           reduce using rule 9 (variables_list -> IDENT COMMA variables_list .)
+    LCURL           reduce using rule 9 (variables_list -> IDENT COMMA variables_list .)
+
+
+state 49
+
+    (25) statement_return -> RETURN expression SEMICOL .
+
+    RETURN          reduce using rule 25 (statement_return -> RETURN expression SEMICOL .)
+    PRINT           reduce using rule 25 (statement_return -> RETURN expression SEMICOL .)
+    IDENT           reduce using rule 25 (statement_return -> RETURN expression SEMICOL .)
+    IF              reduce using rule 25 (statement_return -> RETURN expression SEMICOL .)
+    WHILE           reduce using rule 25 (statement_return -> RETURN expression SEMICOL .)
+    LCURL           reduce using rule 25 (statement_return -> RETURN expression SEMICOL .)
+    $end            reduce using rule 25 (statement_return -> RETURN expression SEMICOL .)
+    RCURL           reduce using rule 25 (statement_return -> RETURN expression SEMICOL .)
+    ELSE            reduce using rule 25 (statement_return -> RETURN expression SEMICOL .)
+
+
+state 50
+
+    (41) expression_binop -> expression PLUS . expression
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 71
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 51
+
+    (42) expression_binop -> expression MINUS . expression
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 72
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 52
+
+    (43) expression_binop -> expression TIMES . expression
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 73
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 53
+
+    (44) expression_binop -> expression DIVIDE . expression
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 74
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 54
+
+    (45) expression_binop -> expression EQ . expression
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 75
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 55
+
+    (46) expression_binop -> expression NEQ . expression
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 76
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 56
+
+    (47) expression_binop -> expression LT . expression
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 77
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 57
+
+    (48) expression_binop -> expression GT . expression
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 78
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 58
+
+    (49) expression_binop -> expression LTE . expression
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 79
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 59
+
+    (50) expression_binop -> expression GTE . expression
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 80
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 60
+
+    (40) expression_call -> IDENT LPAREN . optional_expression_list RPAREN
+    (52) optional_expression_list -> . empty
+    (53) optional_expression_list -> . expression_list
+    (2) empty -> .
+    (54) expression_list -> . expression
+    (55) expression_list -> . expression COMMA expression_list
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    RPAREN          reduce using rule 2 (empty -> .)
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    optional_expression_list       shift and go to state 81
+    empty                          shift and go to state 82
+    expression_list                shift and go to state 83
+    expression                     shift and go to state 84
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 61
+
+    (51) expression_group -> LPAREN expression . RPAREN
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    RPAREN          shift and go to state 85
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NEQ             shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LTE             shift and go to state 58
+    GTE             shift and go to state 59
+
+
+state 62
+
+    (26) statement_print -> PRINT expression SEMICOL .
+
+    RETURN          reduce using rule 26 (statement_print -> PRINT expression SEMICOL .)
+    PRINT           reduce using rule 26 (statement_print -> PRINT expression SEMICOL .)
+    IDENT           reduce using rule 26 (statement_print -> PRINT expression SEMICOL .)
+    IF              reduce using rule 26 (statement_print -> PRINT expression SEMICOL .)
+    WHILE           reduce using rule 26 (statement_print -> PRINT expression SEMICOL .)
+    LCURL           reduce using rule 26 (statement_print -> PRINT expression SEMICOL .)
+    $end            reduce using rule 26 (statement_print -> PRINT expression SEMICOL .)
+    RCURL           reduce using rule 26 (statement_print -> PRINT expression SEMICOL .)
+    ELSE            reduce using rule 26 (statement_print -> PRINT expression SEMICOL .)
+
+
+state 63
+
+    (27) statement_assignment -> IDENT ASSIGN expression . SEMICOL
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    SEMICOL         shift and go to state 86
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NEQ             shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LTE             shift and go to state 58
+    GTE             shift and go to state 59
+
+
+state 64
+
+    (28) statement_ifthenelse -> IF expression THEN . statement ELSE statement
+    (19) statement -> . statement_return
+    (20) statement -> . statement_print
+    (21) statement -> . statement_assignment
+    (22) statement -> . statement_ifthenelse
+    (23) statement -> . statement_while
+    (24) statement -> . statement_compound
+    (25) statement_return -> . RETURN expression SEMICOL
+    (26) statement_print -> . PRINT expression SEMICOL
+    (27) statement_assignment -> . IDENT ASSIGN expression SEMICOL
+    (28) statement_ifthenelse -> . IF expression THEN statement ELSE statement
+    (29) statement_while -> . WHILE expression DO statement
+    (30) statement_compound -> . LCURL statement_list RCURL
+
+    RETURN          shift and go to state 22
+    PRINT           shift and go to state 23
+    IDENT           shift and go to state 24
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    LCURL           shift and go to state 27
+
+    statement                      shift and go to state 87
+    statement_return               shift and go to state 16
+    statement_print                shift and go to state 17
+    statement_assignment           shift and go to state 18
+    statement_ifthenelse           shift and go to state 19
+    statement_while                shift and go to state 20
+    statement_compound             shift and go to state 21
+
+state 65
+
+    (29) statement_while -> WHILE expression DO . statement
+    (19) statement -> . statement_return
+    (20) statement -> . statement_print
+    (21) statement -> . statement_assignment
+    (22) statement -> . statement_ifthenelse
+    (23) statement -> . statement_while
+    (24) statement -> . statement_compound
+    (25) statement_return -> . RETURN expression SEMICOL
+    (26) statement_print -> . PRINT expression SEMICOL
+    (27) statement_assignment -> . IDENT ASSIGN expression SEMICOL
+    (28) statement_ifthenelse -> . IF expression THEN statement ELSE statement
+    (29) statement_while -> . WHILE expression DO statement
+    (30) statement_compound -> . LCURL statement_list RCURL
+
+    RETURN          shift and go to state 22
+    PRINT           shift and go to state 23
+    IDENT           shift and go to state 24
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    LCURL           shift and go to state 27
+
+    statement                      shift and go to state 88
+    statement_return               shift and go to state 16
+    statement_print                shift and go to state 17
+    statement_assignment           shift and go to state 18
+    statement_ifthenelse           shift and go to state 19
+    statement_while                shift and go to state 20
+    statement_compound             shift and go to state 21
+
+state 66
+
+    (30) statement_compound -> LCURL statement_list RCURL .
+
+    RETURN          reduce using rule 30 (statement_compound -> LCURL statement_list RCURL .)
+    PRINT           reduce using rule 30 (statement_compound -> LCURL statement_list RCURL .)
+    IDENT           reduce using rule 30 (statement_compound -> LCURL statement_list RCURL .)
+    IF              reduce using rule 30 (statement_compound -> LCURL statement_list RCURL .)
+    WHILE           reduce using rule 30 (statement_compound -> LCURL statement_list RCURL .)
+    LCURL           reduce using rule 30 (statement_compound -> LCURL statement_list RCURL .)
+    $end            reduce using rule 30 (statement_compound -> LCURL statement_list RCURL .)
+    RCURL           reduce using rule 30 (statement_compound -> LCURL statement_list RCURL .)
+    ELSE            reduce using rule 30 (statement_compound -> LCURL statement_list RCURL .)
+
+
+state 67
+
+    (17) parameter_list -> IDENT .
+    (18) parameter_list -> IDENT . COMMA parameter_list
+
+    RPAREN          reduce using rule 17 (parameter_list -> IDENT .)
+    COMMA           shift and go to state 89
+
+
+state 68
+
+    (14) function -> FUNCTION IDENT LPAREN optional_parameter_list . RPAREN LCURL body RCURL
+
+    RPAREN          shift and go to state 90
+
+
+state 69
+
+    (15) optional_parameter_list -> empty .
+
+    RPAREN          reduce using rule 15 (optional_parameter_list -> empty .)
+
+
+state 70
+
+    (16) optional_parameter_list -> parameter_list .
+
+    RPAREN          reduce using rule 16 (optional_parameter_list -> parameter_list .)
+
+
+state 71
+
+    (41) expression_binop -> expression PLUS expression .
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    SEMICOL         reduce using rule 41 (expression_binop -> expression PLUS expression .)
+    PLUS            reduce using rule 41 (expression_binop -> expression PLUS expression .)
+    MINUS           reduce using rule 41 (expression_binop -> expression PLUS expression .)
+    EQ              reduce using rule 41 (expression_binop -> expression PLUS expression .)
+    NEQ             reduce using rule 41 (expression_binop -> expression PLUS expression .)
+    LT              reduce using rule 41 (expression_binop -> expression PLUS expression .)
+    GT              reduce using rule 41 (expression_binop -> expression PLUS expression .)
+    LTE             reduce using rule 41 (expression_binop -> expression PLUS expression .)
+    GTE             reduce using rule 41 (expression_binop -> expression PLUS expression .)
+    THEN            reduce using rule 41 (expression_binop -> expression PLUS expression .)
+    DO              reduce using rule 41 (expression_binop -> expression PLUS expression .)
+    RPAREN          reduce using rule 41 (expression_binop -> expression PLUS expression .)
+    COMMA           reduce using rule 41 (expression_binop -> expression PLUS expression .)
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+
+  ! TIMES           [ reduce using rule 41 (expression_binop -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 41 (expression_binop -> expression PLUS expression .) ]
+  ! PLUS            [ shift and go to state 50 ]
+  ! MINUS           [ shift and go to state 51 ]
+  ! EQ              [ shift and go to state 54 ]
+  ! NEQ             [ shift and go to state 55 ]
+  ! LT              [ shift and go to state 56 ]
+  ! GT              [ shift and go to state 57 ]
+  ! LTE             [ shift and go to state 58 ]
+  ! GTE             [ shift and go to state 59 ]
+
+
+state 72
+
+    (42) expression_binop -> expression MINUS expression .
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    SEMICOL         reduce using rule 42 (expression_binop -> expression MINUS expression .)
+    PLUS            reduce using rule 42 (expression_binop -> expression MINUS expression .)
+    MINUS           reduce using rule 42 (expression_binop -> expression MINUS expression .)
+    EQ              reduce using rule 42 (expression_binop -> expression MINUS expression .)
+    NEQ             reduce using rule 42 (expression_binop -> expression MINUS expression .)
+    LT              reduce using rule 42 (expression_binop -> expression MINUS expression .)
+    GT              reduce using rule 42 (expression_binop -> expression MINUS expression .)
+    LTE             reduce using rule 42 (expression_binop -> expression MINUS expression .)
+    GTE             reduce using rule 42 (expression_binop -> expression MINUS expression .)
+    THEN            reduce using rule 42 (expression_binop -> expression MINUS expression .)
+    DO              reduce using rule 42 (expression_binop -> expression MINUS expression .)
+    RPAREN          reduce using rule 42 (expression_binop -> expression MINUS expression .)
+    COMMA           reduce using rule 42 (expression_binop -> expression MINUS expression .)
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+
+  ! TIMES           [ reduce using rule 42 (expression_binop -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 42 (expression_binop -> expression MINUS expression .) ]
+  ! PLUS            [ shift and go to state 50 ]
+  ! MINUS           [ shift and go to state 51 ]
+  ! EQ              [ shift and go to state 54 ]
+  ! NEQ             [ shift and go to state 55 ]
+  ! LT              [ shift and go to state 56 ]
+  ! GT              [ shift and go to state 57 ]
+  ! LTE             [ shift and go to state 58 ]
+  ! GTE             [ shift and go to state 59 ]
+
+
+state 73
+
+    (43) expression_binop -> expression TIMES expression .
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    SEMICOL         reduce using rule 43 (expression_binop -> expression TIMES expression .)
+    PLUS            reduce using rule 43 (expression_binop -> expression TIMES expression .)
+    MINUS           reduce using rule 43 (expression_binop -> expression TIMES expression .)
+    TIMES           reduce using rule 43 (expression_binop -> expression TIMES expression .)
+    DIVIDE          reduce using rule 43 (expression_binop -> expression TIMES expression .)
+    EQ              reduce using rule 43 (expression_binop -> expression TIMES expression .)
+    NEQ             reduce using rule 43 (expression_binop -> expression TIMES expression .)
+    LT              reduce using rule 43 (expression_binop -> expression TIMES expression .)
+    GT              reduce using rule 43 (expression_binop -> expression TIMES expression .)
+    LTE             reduce using rule 43 (expression_binop -> expression TIMES expression .)
+    GTE             reduce using rule 43 (expression_binop -> expression TIMES expression .)
+    THEN            reduce using rule 43 (expression_binop -> expression TIMES expression .)
+    DO              reduce using rule 43 (expression_binop -> expression TIMES expression .)
+    RPAREN          reduce using rule 43 (expression_binop -> expression TIMES expression .)
+    COMMA           reduce using rule 43 (expression_binop -> expression TIMES expression .)
+
+  ! PLUS            [ shift and go to state 50 ]
+  ! MINUS           [ shift and go to state 51 ]
+  ! TIMES           [ shift and go to state 52 ]
+  ! DIVIDE          [ shift and go to state 53 ]
+  ! EQ              [ shift and go to state 54 ]
+  ! NEQ             [ shift and go to state 55 ]
+  ! LT              [ shift and go to state 56 ]
+  ! GT              [ shift and go to state 57 ]
+  ! LTE             [ shift and go to state 58 ]
+  ! GTE             [ shift and go to state 59 ]
+
+
+state 74
+
+    (44) expression_binop -> expression DIVIDE expression .
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    SEMICOL         reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+    PLUS            reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+    MINUS           reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+    TIMES           reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+    EQ              reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+    NEQ             reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+    LT              reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+    GT              reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+    LTE             reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+    GTE             reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+    THEN            reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+    DO              reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+    COMMA           reduce using rule 44 (expression_binop -> expression DIVIDE expression .)
+
+  ! PLUS            [ shift and go to state 50 ]
+  ! MINUS           [ shift and go to state 51 ]
+  ! TIMES           [ shift and go to state 52 ]
+  ! DIVIDE          [ shift and go to state 53 ]
+  ! EQ              [ shift and go to state 54 ]
+  ! NEQ             [ shift and go to state 55 ]
+  ! LT              [ shift and go to state 56 ]
+  ! GT              [ shift and go to state 57 ]
+  ! LTE             [ shift and go to state 58 ]
+  ! GTE             [ shift and go to state 59 ]
+
+
+state 75
+
+    (45) expression_binop -> expression EQ expression .
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    SEMICOL         reduce using rule 45 (expression_binop -> expression EQ expression .)
+    THEN            reduce using rule 45 (expression_binop -> expression EQ expression .)
+    DO              reduce using rule 45 (expression_binop -> expression EQ expression .)
+    RPAREN          reduce using rule 45 (expression_binop -> expression EQ expression .)
+    COMMA           reduce using rule 45 (expression_binop -> expression EQ expression .)
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NEQ             shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LTE             shift and go to state 58
+    GTE             shift and go to state 59
+
+  ! PLUS            [ reduce using rule 45 (expression_binop -> expression EQ expression .) ]
+  ! MINUS           [ reduce using rule 45 (expression_binop -> expression EQ expression .) ]
+  ! TIMES           [ reduce using rule 45 (expression_binop -> expression EQ expression .) ]
+  ! DIVIDE          [ reduce using rule 45 (expression_binop -> expression EQ expression .) ]
+  ! EQ              [ reduce using rule 45 (expression_binop -> expression EQ expression .) ]
+  ! NEQ             [ reduce using rule 45 (expression_binop -> expression EQ expression .) ]
+  ! LT              [ reduce using rule 45 (expression_binop -> expression EQ expression .) ]
+  ! GT              [ reduce using rule 45 (expression_binop -> expression EQ expression .) ]
+  ! LTE             [ reduce using rule 45 (expression_binop -> expression EQ expression .) ]
+  ! GTE             [ reduce using rule 45 (expression_binop -> expression EQ expression .) ]
+
+
+state 76
+
+    (46) expression_binop -> expression NEQ expression .
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    SEMICOL         reduce using rule 46 (expression_binop -> expression NEQ expression .)
+    THEN            reduce using rule 46 (expression_binop -> expression NEQ expression .)
+    DO              reduce using rule 46 (expression_binop -> expression NEQ expression .)
+    RPAREN          reduce using rule 46 (expression_binop -> expression NEQ expression .)
+    COMMA           reduce using rule 46 (expression_binop -> expression NEQ expression .)
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NEQ             shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LTE             shift and go to state 58
+    GTE             shift and go to state 59
+
+  ! PLUS            [ reduce using rule 46 (expression_binop -> expression NEQ expression .) ]
+  ! MINUS           [ reduce using rule 46 (expression_binop -> expression NEQ expression .) ]
+  ! TIMES           [ reduce using rule 46 (expression_binop -> expression NEQ expression .) ]
+  ! DIVIDE          [ reduce using rule 46 (expression_binop -> expression NEQ expression .) ]
+  ! EQ              [ reduce using rule 46 (expression_binop -> expression NEQ expression .) ]
+  ! NEQ             [ reduce using rule 46 (expression_binop -> expression NEQ expression .) ]
+  ! LT              [ reduce using rule 46 (expression_binop -> expression NEQ expression .) ]
+  ! GT              [ reduce using rule 46 (expression_binop -> expression NEQ expression .) ]
+  ! LTE             [ reduce using rule 46 (expression_binop -> expression NEQ expression .) ]
+  ! GTE             [ reduce using rule 46 (expression_binop -> expression NEQ expression .) ]
+
+
+state 77
+
+    (47) expression_binop -> expression LT expression .
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    SEMICOL         reduce using rule 47 (expression_binop -> expression LT expression .)
+    THEN            reduce using rule 47 (expression_binop -> expression LT expression .)
+    DO              reduce using rule 47 (expression_binop -> expression LT expression .)
+    RPAREN          reduce using rule 47 (expression_binop -> expression LT expression .)
+    COMMA           reduce using rule 47 (expression_binop -> expression LT expression .)
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NEQ             shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LTE             shift and go to state 58
+    GTE             shift and go to state 59
+
+  ! PLUS            [ reduce using rule 47 (expression_binop -> expression LT expression .) ]
+  ! MINUS           [ reduce using rule 47 (expression_binop -> expression LT expression .) ]
+  ! TIMES           [ reduce using rule 47 (expression_binop -> expression LT expression .) ]
+  ! DIVIDE          [ reduce using rule 47 (expression_binop -> expression LT expression .) ]
+  ! EQ              [ reduce using rule 47 (expression_binop -> expression LT expression .) ]
+  ! NEQ             [ reduce using rule 47 (expression_binop -> expression LT expression .) ]
+  ! LT              [ reduce using rule 47 (expression_binop -> expression LT expression .) ]
+  ! GT              [ reduce using rule 47 (expression_binop -> expression LT expression .) ]
+  ! LTE             [ reduce using rule 47 (expression_binop -> expression LT expression .) ]
+  ! GTE             [ reduce using rule 47 (expression_binop -> expression LT expression .) ]
+
+
+state 78
+
+    (48) expression_binop -> expression GT expression .
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    SEMICOL         reduce using rule 48 (expression_binop -> expression GT expression .)
+    THEN            reduce using rule 48 (expression_binop -> expression GT expression .)
+    DO              reduce using rule 48 (expression_binop -> expression GT expression .)
+    RPAREN          reduce using rule 48 (expression_binop -> expression GT expression .)
+    COMMA           reduce using rule 48 (expression_binop -> expression GT expression .)
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NEQ             shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LTE             shift and go to state 58
+    GTE             shift and go to state 59
+
+  ! PLUS            [ reduce using rule 48 (expression_binop -> expression GT expression .) ]
+  ! MINUS           [ reduce using rule 48 (expression_binop -> expression GT expression .) ]
+  ! TIMES           [ reduce using rule 48 (expression_binop -> expression GT expression .) ]
+  ! DIVIDE          [ reduce using rule 48 (expression_binop -> expression GT expression .) ]
+  ! EQ              [ reduce using rule 48 (expression_binop -> expression GT expression .) ]
+  ! NEQ             [ reduce using rule 48 (expression_binop -> expression GT expression .) ]
+  ! LT              [ reduce using rule 48 (expression_binop -> expression GT expression .) ]
+  ! GT              [ reduce using rule 48 (expression_binop -> expression GT expression .) ]
+  ! LTE             [ reduce using rule 48 (expression_binop -> expression GT expression .) ]
+  ! GTE             [ reduce using rule 48 (expression_binop -> expression GT expression .) ]
+
+
+state 79
+
+    (49) expression_binop -> expression LTE expression .
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    SEMICOL         reduce using rule 49 (expression_binop -> expression LTE expression .)
+    THEN            reduce using rule 49 (expression_binop -> expression LTE expression .)
+    DO              reduce using rule 49 (expression_binop -> expression LTE expression .)
+    RPAREN          reduce using rule 49 (expression_binop -> expression LTE expression .)
+    COMMA           reduce using rule 49 (expression_binop -> expression LTE expression .)
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NEQ             shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LTE             shift and go to state 58
+    GTE             shift and go to state 59
+
+  ! PLUS            [ reduce using rule 49 (expression_binop -> expression LTE expression .) ]
+  ! MINUS           [ reduce using rule 49 (expression_binop -> expression LTE expression .) ]
+  ! TIMES           [ reduce using rule 49 (expression_binop -> expression LTE expression .) ]
+  ! DIVIDE          [ reduce using rule 49 (expression_binop -> expression LTE expression .) ]
+  ! EQ              [ reduce using rule 49 (expression_binop -> expression LTE expression .) ]
+  ! NEQ             [ reduce using rule 49 (expression_binop -> expression LTE expression .) ]
+  ! LT              [ reduce using rule 49 (expression_binop -> expression LTE expression .) ]
+  ! GT              [ reduce using rule 49 (expression_binop -> expression LTE expression .) ]
+  ! LTE             [ reduce using rule 49 (expression_binop -> expression LTE expression .) ]
+  ! GTE             [ reduce using rule 49 (expression_binop -> expression LTE expression .) ]
+
+
+state 80
+
+    (50) expression_binop -> expression GTE expression .
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    SEMICOL         reduce using rule 50 (expression_binop -> expression GTE expression .)
+    THEN            reduce using rule 50 (expression_binop -> expression GTE expression .)
+    DO              reduce using rule 50 (expression_binop -> expression GTE expression .)
+    RPAREN          reduce using rule 50 (expression_binop -> expression GTE expression .)
+    COMMA           reduce using rule 50 (expression_binop -> expression GTE expression .)
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NEQ             shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LTE             shift and go to state 58
+    GTE             shift and go to state 59
+
+  ! PLUS            [ reduce using rule 50 (expression_binop -> expression GTE expression .) ]
+  ! MINUS           [ reduce using rule 50 (expression_binop -> expression GTE expression .) ]
+  ! TIMES           [ reduce using rule 50 (expression_binop -> expression GTE expression .) ]
+  ! DIVIDE          [ reduce using rule 50 (expression_binop -> expression GTE expression .) ]
+  ! EQ              [ reduce using rule 50 (expression_binop -> expression GTE expression .) ]
+  ! NEQ             [ reduce using rule 50 (expression_binop -> expression GTE expression .) ]
+  ! LT              [ reduce using rule 50 (expression_binop -> expression GTE expression .) ]
+  ! GT              [ reduce using rule 50 (expression_binop -> expression GTE expression .) ]
+  ! LTE             [ reduce using rule 50 (expression_binop -> expression GTE expression .) ]
+  ! GTE             [ reduce using rule 50 (expression_binop -> expression GTE expression .) ]
+
+
+state 81
+
+    (40) expression_call -> IDENT LPAREN optional_expression_list . RPAREN
+
+    RPAREN          shift and go to state 91
+
+
+state 82
+
+    (52) optional_expression_list -> empty .
+
+    RPAREN          reduce using rule 52 (optional_expression_list -> empty .)
+
+
+state 83
+
+    (53) optional_expression_list -> expression_list .
+
+    RPAREN          reduce using rule 53 (optional_expression_list -> expression_list .)
+
+
+state 84
+
+    (54) expression_list -> expression .
+    (55) expression_list -> expression . COMMA expression_list
+    (41) expression_binop -> expression . PLUS expression
+    (42) expression_binop -> expression . MINUS expression
+    (43) expression_binop -> expression . TIMES expression
+    (44) expression_binop -> expression . DIVIDE expression
+    (45) expression_binop -> expression . EQ expression
+    (46) expression_binop -> expression . NEQ expression
+    (47) expression_binop -> expression . LT expression
+    (48) expression_binop -> expression . GT expression
+    (49) expression_binop -> expression . LTE expression
+    (50) expression_binop -> expression . GTE expression
+
+    RPAREN          reduce using rule 54 (expression_list -> expression .)
+    COMMA           shift and go to state 92
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NEQ             shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LTE             shift and go to state 58
+    GTE             shift and go to state 59
+
+
+state 85
+
+    (51) expression_group -> LPAREN expression RPAREN .
+
+    SEMICOL         reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+    EQ              reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+    NEQ             reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+    LT              reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+    GT              reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+    LTE             reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+    GTE             reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+    THEN            reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+    DO              reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 51 (expression_group -> LPAREN expression RPAREN .)
+
+
+state 86
+
+    (27) statement_assignment -> IDENT ASSIGN expression SEMICOL .
+
+    RETURN          reduce using rule 27 (statement_assignment -> IDENT ASSIGN expression SEMICOL .)
+    PRINT           reduce using rule 27 (statement_assignment -> IDENT ASSIGN expression SEMICOL .)
+    IDENT           reduce using rule 27 (statement_assignment -> IDENT ASSIGN expression SEMICOL .)
+    IF              reduce using rule 27 (statement_assignment -> IDENT ASSIGN expression SEMICOL .)
+    WHILE           reduce using rule 27 (statement_assignment -> IDENT ASSIGN expression SEMICOL .)
+    LCURL           reduce using rule 27 (statement_assignment -> IDENT ASSIGN expression SEMICOL .)
+    $end            reduce using rule 27 (statement_assignment -> IDENT ASSIGN expression SEMICOL .)
+    RCURL           reduce using rule 27 (statement_assignment -> IDENT ASSIGN expression SEMICOL .)
+    ELSE            reduce using rule 27 (statement_assignment -> IDENT ASSIGN expression SEMICOL .)
+
+
+state 87
+
+    (28) statement_ifthenelse -> IF expression THEN statement . ELSE statement
+
+    ELSE            shift and go to state 93
+
+
+state 88
+
+    (29) statement_while -> WHILE expression DO statement .
+
+    RETURN          reduce using rule 29 (statement_while -> WHILE expression DO statement .)
+    PRINT           reduce using rule 29 (statement_while -> WHILE expression DO statement .)
+    IDENT           reduce using rule 29 (statement_while -> WHILE expression DO statement .)
+    IF              reduce using rule 29 (statement_while -> WHILE expression DO statement .)
+    WHILE           reduce using rule 29 (statement_while -> WHILE expression DO statement .)
+    LCURL           reduce using rule 29 (statement_while -> WHILE expression DO statement .)
+    $end            reduce using rule 29 (statement_while -> WHILE expression DO statement .)
+    RCURL           reduce using rule 29 (statement_while -> WHILE expression DO statement .)
+    ELSE            reduce using rule 29 (statement_while -> WHILE expression DO statement .)
+
+
+state 89
+
+    (18) parameter_list -> IDENT COMMA . parameter_list
+    (17) parameter_list -> . IDENT
+    (18) parameter_list -> . IDENT COMMA parameter_list
+
+    IDENT           shift and go to state 67
+
+    parameter_list                 shift and go to state 94
+
+state 90
+
+    (14) function -> FUNCTION IDENT LPAREN optional_parameter_list RPAREN . LCURL body RCURL
+
+    LCURL           shift and go to state 95
+
+
+state 91
+
+    (40) expression_call -> IDENT LPAREN optional_expression_list RPAREN .
+
+    SEMICOL         reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+    PLUS            reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+    MINUS           reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+    TIMES           reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+    DIVIDE          reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+    EQ              reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+    NEQ             reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+    LT              reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+    GT              reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+    LTE             reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+    GTE             reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+    THEN            reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+    DO              reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+    RPAREN          reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+    COMMA           reduce using rule 40 (expression_call -> IDENT LPAREN optional_expression_list RPAREN .)
+
+
+state 92
+
+    (55) expression_list -> expression COMMA . expression_list
+    (54) expression_list -> . expression
+    (55) expression_list -> . expression COMMA expression_list
+    (33) expression -> . expression_integer
+    (34) expression -> . expression_identifier
+    (35) expression -> . expression_call
+    (36) expression -> . expression_binop
+    (37) expression -> . expression_group
+    (38) expression_integer -> . INT
+    (39) expression_identifier -> . IDENT
+    (40) expression_call -> . IDENT LPAREN optional_expression_list RPAREN
+    (41) expression_binop -> . expression PLUS expression
+    (42) expression_binop -> . expression MINUS expression
+    (43) expression_binop -> . expression TIMES expression
+    (44) expression_binop -> . expression DIVIDE expression
+    (45) expression_binop -> . expression EQ expression
+    (46) expression_binop -> . expression NEQ expression
+    (47) expression_binop -> . expression LT expression
+    (48) expression_binop -> . expression GT expression
+    (49) expression_binop -> . expression LTE expression
+    (50) expression_binop -> . expression GTE expression
+    (51) expression_group -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 39
+    IDENT           shift and go to state 40
+    LPAREN          shift and go to state 41
+
+    expression                     shift and go to state 84
+    expression_list                shift and go to state 96
+    expression_integer             shift and go to state 34
+    expression_identifier          shift and go to state 35
+    expression_call                shift and go to state 36
+    expression_binop               shift and go to state 37
+    expression_group               shift and go to state 38
+
+state 93
+
+    (28) statement_ifthenelse -> IF expression THEN statement ELSE . statement
+    (19) statement -> . statement_return
+    (20) statement -> . statement_print
+    (21) statement -> . statement_assignment
+    (22) statement -> . statement_ifthenelse
+    (23) statement -> . statement_while
+    (24) statement -> . statement_compound
+    (25) statement_return -> . RETURN expression SEMICOL
+    (26) statement_print -> . PRINT expression SEMICOL
+    (27) statement_assignment -> . IDENT ASSIGN expression SEMICOL
+    (28) statement_ifthenelse -> . IF expression THEN statement ELSE statement
+    (29) statement_while -> . WHILE expression DO statement
+    (30) statement_compound -> . LCURL statement_list RCURL
+
+    RETURN          shift and go to state 22
+    PRINT           shift and go to state 23
+    IDENT           shift and go to state 24
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    LCURL           shift and go to state 27
+
+    statement                      shift and go to state 97
+    statement_return               shift and go to state 16
+    statement_print                shift and go to state 17
+    statement_assignment           shift and go to state 18
+    statement_ifthenelse           shift and go to state 19
+    statement_while                shift and go to state 20
+    statement_compound             shift and go to state 21
+
+state 94
+
+    (18) parameter_list -> IDENT COMMA parameter_list .
+
+    RPAREN          reduce using rule 18 (parameter_list -> IDENT COMMA parameter_list .)
+
+
+state 95
+
+    (14) function -> FUNCTION IDENT LPAREN optional_parameter_list RPAREN LCURL . body RCURL
+    (3) body -> . optional_variables_declaration_sequence optional_functions_declaration_list statement_list
+    (4) optional_variables_declaration_sequence -> . empty
+    (5) optional_variables_declaration_sequence -> . variables_declaration_sequence
+    (2) empty -> .
+    (6) variables_declaration_sequence -> . VAR variables_list
+    (7) variables_declaration_sequence -> . VAR variables_list variables_declaration_sequence
+
+    FUNCTION        reduce using rule 2 (empty -> .)
+    RETURN          reduce using rule 2 (empty -> .)
+    PRINT           reduce using rule 2 (empty -> .)
+    IDENT           reduce using rule 2 (empty -> .)
+    IF              reduce using rule 2 (empty -> .)
+    WHILE           reduce using rule 2 (empty -> .)
+    LCURL           reduce using rule 2 (empty -> .)
+    VAR             shift and go to state 6
+
+    body                           shift and go to state 98
+    optional_variables_declaration_sequence shift and go to state 3
+    empty                          shift and go to state 4
+    variables_declaration_sequence shift and go to state 5
+
+state 96
+
+    (55) expression_list -> expression COMMA expression_list .
+
+    RPAREN          reduce using rule 55 (expression_list -> expression COMMA expression_list .)
+
+
+state 97
+
+    (28) statement_ifthenelse -> IF expression THEN statement ELSE statement .
+
+    RETURN          reduce using rule 28 (statement_ifthenelse -> IF expression THEN statement ELSE statement .)
+    PRINT           reduce using rule 28 (statement_ifthenelse -> IF expression THEN statement ELSE statement .)
+    IDENT           reduce using rule 28 (statement_ifthenelse -> IF expression THEN statement ELSE statement .)
+    IF              reduce using rule 28 (statement_ifthenelse -> IF expression THEN statement ELSE statement .)
+    WHILE           reduce using rule 28 (statement_ifthenelse -> IF expression THEN statement ELSE statement .)
+    LCURL           reduce using rule 28 (statement_ifthenelse -> IF expression THEN statement ELSE statement .)
+    $end            reduce using rule 28 (statement_ifthenelse -> IF expression THEN statement ELSE statement .)
+    RCURL           reduce using rule 28 (statement_ifthenelse -> IF expression THEN statement ELSE statement .)
+    ELSE            reduce using rule 28 (statement_ifthenelse -> IF expression THEN statement ELSE statement .)
+
+
+state 98
+
+    (14) function -> FUNCTION IDENT LPAREN optional_parameter_list RPAREN LCURL body . RCURL
+
+    RCURL           shift and go to state 99
+
+
+state 99
+
+    (14) function -> FUNCTION IDENT LPAREN optional_parameter_list RPAREN LCURL body RCURL .
+
+    FUNCTION        reduce using rule 14 (function -> FUNCTION IDENT LPAREN optional_parameter_list RPAREN LCURL body RCURL .)
+    RETURN          reduce using rule 14 (function -> FUNCTION IDENT LPAREN optional_parameter_list RPAREN LCURL body RCURL .)
+    PRINT           reduce using rule 14 (function -> FUNCTION IDENT LPAREN optional_parameter_list RPAREN LCURL body RCURL .)
+    IDENT           reduce using rule 14 (function -> FUNCTION IDENT LPAREN optional_parameter_list RPAREN LCURL body RCURL .)
+    IF              reduce using rule 14 (function -> FUNCTION IDENT LPAREN optional_parameter_list RPAREN LCURL body RCURL .)
+    WHILE           reduce using rule 14 (function -> FUNCTION IDENT LPAREN optional_parameter_list RPAREN LCURL body RCURL .)
+    LCURL           reduce using rule 14 (function -> FUNCTION IDENT LPAREN optional_parameter_list RPAREN LCURL body RCURL .)
+

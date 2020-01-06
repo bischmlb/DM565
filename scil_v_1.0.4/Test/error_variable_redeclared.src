@@ -1,0 +1,8 @@
+
+# Error test: A variable is redeclared.
+
+var x
+var y
+var x
+
+return 0;

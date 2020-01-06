@@ -1,0 +1,13 @@
+
+# Using the classic factorial function as an example, this is a test
+# that the compiler also accepts the DOS \r\n end-of-line convention.
+
+function factorial(n){
+  if n == 0 then
+    return 1;
+  else
+    return n * factorial(n-1);
+}
+
+print factorial(5);
+return 0;

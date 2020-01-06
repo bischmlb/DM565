@@ -1,0 +1,28 @@
+
+# Simple static link test.
+
+function f(){
+    var a, b, n
+
+    function fib(){
+	var tmp
+
+	if n == 1 then
+	    return a;
+	else {
+	    tmp = a;
+	    a = b;
+	    b = tmp + b;
+	    n = n - 1;
+	    return fib();
+	}
+    }
+    
+    a = 1;
+    b = 1;
+    n = 9;
+    return fib();
+}
+
+print f();
+return 0;

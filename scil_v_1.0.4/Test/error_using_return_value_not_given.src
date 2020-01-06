@@ -1,0 +1,13 @@
+
+# Test of return values used when not produced; there are no checks for this,
+# so the (arbitrary) value of %rax will be used.
+
+var a
+
+function f(){
+    print a;
+}
+
+a = 42;
+print f();
+return 0;

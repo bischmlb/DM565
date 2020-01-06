@@ -1,0 +1,18 @@
+
+# Testing static link for parameter access
+
+var dummy
+
+function f(a){
+
+  function g(){
+    print(a);
+    return 0;
+  }
+
+  dummy = g();
+  return 0;
+}
+
+dummy = f(42);
+return 0;

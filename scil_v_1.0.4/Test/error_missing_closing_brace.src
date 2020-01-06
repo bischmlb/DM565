@@ -1,0 +1,10 @@
+
+# Missing closing brace.
+
+function f(){
+    var tmp
+
+    return 42;
+
+print f();
+return 0;

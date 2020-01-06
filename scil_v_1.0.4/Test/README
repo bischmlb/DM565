@@ -1,0 +1,13 @@
+
+The test scripts assume that there is one directory containing
+the compiler directory, Compiler, and this test directory, Test.
+
+Files with suffix .src are source files and files with suffix .eop
+contain expected output of the corresponding source files. All
+other files are test scripts of various kinds.
+
+A good start is to be in the directory Test and run the command
+
+> ./runAllTests
+
+This will check and report on all the test files in the directory.

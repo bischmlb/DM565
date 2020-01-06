@@ -1,0 +1,33 @@
+
+# Testing static, nested scope, including name hiding.
+
+var a, dummy
+
+function f(){
+
+  function g(){
+
+    var a
+
+    function h(){
+      a = 0;
+      print(a); # 3rd output: 0
+    }
+    
+    a = 2;
+    print(a); # 2nd output: 2
+    dummy = h();
+    print(a); # 4th output: 0
+    return 0;
+  }
+
+  print(a); # 1st output: 1
+  dummy = g();
+  print(a); # 5th output: 1
+  return 0;
+}
+
+a = 1;
+dummy = f();
+print(a); # 6th output: 1
+return 0;

@@ -1,0 +1,14 @@
+
+# A simple test for calls in calls.
+
+var a
+
+function f(x, y){
+    a = a + x;
+    return 0;
+}
+
+a = 0;
+print f(39, f(f(3, 0), 1));
+print a;
+return 0;

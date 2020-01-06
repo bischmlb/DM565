@@ -1,0 +1,14 @@
+
+# Test of variables declared before their use; should fail in the parser
+# since it is disallowed by the grammar.
+
+function f(){
+    print a;
+    return 0;
+}
+
+var a, dummy
+
+a = 42;
+dummy = f();
+return 0;
