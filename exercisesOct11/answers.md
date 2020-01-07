@@ -24,13 +24,41 @@ Hvis nullable, skal der også sættes tegn ved follow sæt.
 Parsing table tager kun udgangspunkt i de første 5 expressions.
 
 Vi kan se at der er flere produktioner til samme udtryk, og grammatikken er derfor forkert.
+```
+efterregnet til eksamen:  
+FIRST(S') = {$, \, {, WORD, begin, end}  
+FIRST(S) {eps, \, {, WORD, begin, end}  
+FIRST(B) = {\}  
+FIRST(E) = {\}  
+FIRST(X) = {\, {, WORD, begin, end}  
+
+FOLLOW(S') = {$}  
+FOLLOW(S) = { $, }, \}  
+FOLLOW(B) = {\, {, WORD, begin, end}  
+FOLLOW(E) = {\, {, WORD, begin, end, }, $}  
+FOLLOW(X) = {\, {, WORD, begin, end, }, $}  
+```
+
+|    | $ | \   | begin | end | WORD | {   | } |
+|----|---|-----|-------|-----|------|-----|---|
+| S' | 0 | 0   | 0     | 0   | 0    | 0   |   |
+| S  | 1 | 1,2 | 2     |   2 | 2    |  2  |  1|
+| B  |   | 3   |       |     |      |     |   |
+| E  |   | 4   |       |     |      |     |   |
+| X  |   | 5,10|   8   |  9  |  7   |  6  |   |
+
+![](../oct11Lang.PNG)
+
+
+
 
 
 
 ### 3.8
 **Make up a tiny grammar containing left recursion, and use it to demonstrate
 that left recursion is not a problem for LR parsing. Then show a small example
-comparing growth of the LR parse stack with left recursion versus right recursion.**  
+comparing growth of the LR parse stack with left recursion versus right recursion.**
+
 
 Left recursion:  
 ```

@@ -32,11 +32,12 @@ reserved = {
 
 
 tokens = (
-    'IDENT', 'INT',
+    'IDENT', 'INT', 'BOOL',
     'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
     'LPAREN', 'RPAREN', 'LCURL', 'RCURL',
     'EQ', 'NEQ', 'LT', 'GT', 'LTE', 'GTE',
     'ASSIGN', 'COMMA', 'SEMICOL',
+    'AND', 'OR', 'NOT'
 ) + tuple(reserved.values())
 
 t_PLUS = r'\+'
@@ -79,6 +80,11 @@ def t_INT(t):
                       t.lexer.lineno)
         t.value = 0
     return t
+
+
+#def t_BOOL(t):
+    #r'(0|1)'
+    #....
 
 
 # Ignored characters

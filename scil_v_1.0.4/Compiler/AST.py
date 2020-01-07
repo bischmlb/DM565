@@ -207,6 +207,8 @@ class expression_identifier:
     def accept(self, visitor):
         visitor.postVisit(self)
 
+#class expression_boolean:
+
 
 class expression_call:
     def __init__(self, name, exp_list, lineno):

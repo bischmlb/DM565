@@ -530,3 +530,96 @@ Example of LR(1) states from youtube:
 ![ddd](LR(1)Example.PNG)
 
 Making this LALR(1) Would mean we merge the states that are the same (ignoring lookaheads) LALR examples on page 66 appel.
+
+### Parser-generators (Yacc/Bison)
+
+A Yacc specification is divided into three sections, separated by %% marks:
+```
+parser declarations
+%%
+grammar tules
+%%
+programs
+```
+
+Example of yacc implementation for grammar 3.30, page 69, appel:
+
+```c
+%{
+int yylex(void);
+void yyerror(char *s) { EM_error(EM_tokPos, "%s", s); }
+%}
+%token ID WHILE BEGIN END DO IF THEN ELSE SEMI ASSIGN
+%start prog
+%%
+
+prog: stmlist
+
+stm : ID ASSIGN ID
+    | WHILE ID DO stm
+    | BEGIN stmlist END
+    | IF ID THEN stm
+    | IF ID THEN stm ELSE stm
+
+stmlist : stm
+        | stmlist SEMI stm
+```
+Yacc reports shift-reduce and reduce-reduce conflicts, to indicate that the grammar may not be as expected.
+
+Yacc has **precedence directives** that allow us to specify which operations and symbols have higher priority.
+
+Yacc example with reduce reduce conflict:
+
+Grammar:
+```
+S → id := E
+E → id
+E → E & E
+E → E = E
+E → E + E
+```
+
+
+```c
+%{ declarations of yylex and yyerror %}
+%token ID ASSIGN PLUS MINUS AND EQUAL
+%start stm
+%left OR
+%left AND
+%left PLUS
+%%
+
+stm : ID ASSIGN ae
+    | ID ASSIGN be
+
+be : be OR be
+   | be AND be
+   | ae EQUAL ae
+   | ID
+
+ae : ae PLUS ae
+   | ID
+```
+
+
+#### AST
+Example of how an AST would look in a compiler:  
+from wiki  
+![](ASTexample.PNG)
+
+Vi bruger denne i vores sematiske analyse, for at se om alt stemmer overens, når vi går igennem et udtryk. Både mht typechecking, og symbolcollection. Dvs hvis en type er assignet forkert, er det vores AST der findes fejlen. Hvis er symbol allerede er defineret med samme navn i nuværende scope, er det ASTen der smider fejlen. Det er også AST'en der sørger for at tilføje ukendte symboler til vores symbol table.
+
+
+### Symbol tables
+To keep track of where names are available, which instance of a name we are
+talking about, and where it may be found, we collect this information and organize
+it into what is called a **symbol table**.
+
+In C, hash table for each scope, defining what resources are available.
+In Python (SCIL) We use the built-in dictionary.
+
+### Symbol collection  
+Traverser AST'en og indsætter nødvendige data ind i symbol table. Hvis Symboler allerede er defineret i samme scope smider den en error. Dette kan også ses i SCIL compileren.
+
+### Invariants
+Something that you can guarantee wont change in a program, no matter how you use it. If we are invariant, we wont change. Hammer, Saw example from youtube. Once a program/function returns, it must put everything back together.
